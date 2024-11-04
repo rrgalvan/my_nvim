@@ -4,6 +4,12 @@
 -- See the kickstart.nvim README for more information
 return {
   {
+    'm4xshen/autoclose.nvim', -- Auto pair and close parenthesis
+    config = function()
+      require('autoclose').setup()
+    end,
+  },
+  {
     'benlubas/molten-nvim',
     ft = 'python',
     version = '^1.0.0', -- use version <2.0.0 to avoid breaking changes
