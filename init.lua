@@ -756,13 +756,30 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    -- 'folke/tokyonight.nvim',
+    -- 'sainnhe/sonokai',
+    -- 'catppuccin/nvim',
+    -- 'olimorris/onedarkpro.nvim'
+    -- 'navarasu/onedark.nvim',
+    -- 'Mofiqul/dracula.nvim',
+    -- 'neanias/everforest-nvim',
+    -- 'flrnprz/plastic.vim',
+    'phha/zenburn.nvim',
+
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'sonokai'
+      -- vim.cmd.colorscheme 'catppuccin'
+      -- vim.cmd.colorscheme 'onedarkpro'
+      -- vim.cmd.colorscheme 'dracula-soft'
+      -- vim.cmd.colorscheme 'randomhue'
+      -- vim.cmd.colorscheme 'everforest'
+      -- vim.cmd.colorscheme 'plastic'
+      vim.cmd.colorscheme 'zenburn'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'

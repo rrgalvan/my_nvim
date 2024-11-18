@@ -19,10 +19,6 @@ return {
       -- these are examples, not defaults. Please see the readme
       vim.g.molten_image_provider = 'image.nvim'
       vim.g.molten_output_win_max_height = 20
-      -- vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>")
-      -- vim.keymap.set("v", "<localleader>mv", ":MoltenEvaluateVisual<CR>")
-      -- vim.keymap.set("n", "<localleader>mr", ":MoltenReevaluateCell<CR>")
-      -- vim.keymap.set("n", "<localleader>ml", ":MoltenEvaluateLine<CR>")
     end,
     keys = {
       { '<leader>mi', ':MoltenInit<cr>', desc = '[m]olten [i]nit' },
@@ -106,6 +102,9 @@ return {
         },
       }
     end,
+    keys = {
+      { '<leader>qp', ':QuartoPreview<cr>', desc = '[q]quarto [p]preview' },
+    },
   },
   { -- send code from python/r/qmd documets to a terminal or REPL
     -- like ipython, R, bash
