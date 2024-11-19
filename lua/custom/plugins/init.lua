@@ -154,4 +154,6 @@ return {
       vim.keymap.set('n', '<leader>cs', set_terminal, { desc = '[s]et terminal' })
     end,
   },
+  ---
+  { 'Exafunction/codeium.vim', event = 'BufEnter' },
 }
