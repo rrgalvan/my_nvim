@@ -10,6 +10,16 @@ return {
     end,
   },
   {
+    'folke/trouble.nvim',
+    opts = {},
+  },
+  {
+    'vladdoster/remember.nvim',
+    config = function()
+      require('remember').setup {}
+    end,
+  },
+  {
     'benlubas/molten-nvim',
     ft = 'python',
     version = '^1.0.0', -- use version <2.0.0 to avoid breaking changes
@@ -154,6 +164,21 @@ return {
       vim.keymap.set('n', '<leader>cs', set_terminal, { desc = '[s]et terminal' })
     end,
   },
-  ---
-  { 'Exafunction/codeium.vim', event = 'BufEnter' },
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
+  },
+  {
+    'ray-x/lsp_signature.nvim',
+    event = 'InsertEnter',
+    opts = {
+      bind = true,
+      handler_opts = {
+        border = 'rounded',
+      },
+    },
+    config = function(_, opts)
+      require('lsp_signature').setup(opts)
+    end,
+  },
 }
