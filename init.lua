@@ -38,10 +38,8 @@ vim.schedule(function()
 end)
 
 -- Moving up and down wrapped lines
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
+vim.cmd("nnoremap j gj")
+vim.cmd("nnoremap k gk")
 
 -- Enable break indent
 vim.opt.breakindent = true
