@@ -37,6 +37,12 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
+-- Moving up and down wrapped lines
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
 -- Enable break indent
 vim.opt.breakindent = true
 
