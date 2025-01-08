@@ -38,8 +38,8 @@ vim.schedule(function()
 end)
 
 -- Moving up and down wrapped lines
-vim.cmd("nnoremap j gj")
-vim.cmd("nnoremap k gk")
+vim.cmd 'nnoremap j gj'
+vim.cmd 'nnoremap k gk'
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -172,7 +172,7 @@ require('lazy').setup({
       signs = {
         add = { text = '+' },
         change = { text = '~' },
-        delete = { text = '_' },
+        -- delete = { text = '_' },
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
@@ -763,12 +763,13 @@ require('lazy').setup({
     -- 'folke/tokyonight.nvim',
     -- 'sainnhe/sonokai',
     'catppuccin/nvim',
-    -- 'olimorris/onedarkpro.nvim'
+    --'olimorris/onedarkpro.nvim'
     -- 'navarasu/onedark.nvim',
     -- 'Mofiqul/dracula.nvim',
     -- 'neanias/everforest-nvim',
     -- 'flrnprz/plastic.vim',
     -- 'phha/zenburn.nvim',
+    -- 'carlobaldassi/darktangom.vim',
 
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
@@ -784,6 +785,7 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'everforest'
       -- vim.cmd.colorscheme 'plastic'
       -- vim.cmd.colorscheme 'zenburn'
+      -- vim.cmd.colorscheme 'darktangom'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'

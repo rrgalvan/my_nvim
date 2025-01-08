@@ -28,7 +28,8 @@ return {
     init = function()
       -- these are examples, not defaults. Please see the readme
       vim.g.molten_image_provider = 'image.nvim'
-      vim.g.molten_output_win_max_height = 20
+      vim.g.molten_output_win_max_height = 30
+      vim.g.python3_host_prog = vim.fn.expand('~/python/venv/neovim/bin/python3')
     end,
     keys = {
       { '<leader>mi', ':MoltenInit<cr>', desc = '[m]olten [i]nit' },
@@ -72,9 +73,9 @@ return {
 
     init = function()
       -- VimTeX configuration goes here, e.g.
-      -- vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_view_method = 'zathura'
       -- vim.g.vimtex_view_method = 'evince'
-      vim.g.vimtex_view_general_viewer = 'evince'
+      -- vim.g.vimtex_view_general_viewer = 'evince'
     end,
   },
   {
@@ -84,37 +85,37 @@ return {
       'jmbuhr/otter.nvim',
       'nvim-treesitter/nvim-treesitter',
     },
-    init = function()
-      local quarto = require 'quarto'
-      quarto.setup()
-      vim.keymap.set('n', '<leader>qp', quarto.quartoPreview, { silent = false, noremap = true })
-      require('quarto').setup {
-        debug = false,
-        closePreviewOnExit = true,
-        lspFeatures = {
-          enabled = true,
-          chunks = 'curly',
-          languages = { 'r', 'python', 'julia', 'bash', 'html' },
-          diagnostics = {
-            enabled = true,
-            triggers = { 'BufWritePost' },
-          },
-          completion = {
-            enabled = true,
-          },
-        },
-        codeRunner = {
-          enabled = true,
-          default_method = 'molten', -- or 'slime'
-          ft_runners = { python = 'molten' }, -- filetype to runner, ie. `{ python = "molten" }`.
-          -- Takes precedence over `default_method`
-          never_run = { 'yaml' }, -- filetypes which are never sent to a code runner
-        },
-      }
-    end,
-    keys = {
-      { '<leader>qp', ':QuartoPreview<cr>', desc = '[q]quarto [p]preview' },
-    },
+    -- init = function()
+    --   local quarto = require 'quarto'
+    --   quarto.setup()
+    --   vim.keymap.set('n', '<leader>qp', quarto.quartoPreview, { silent = false, noremap = true })
+    --   require('quarto').setup {
+    --     debug = false,
+    --     closePreviewOnExit = true,
+    --     lspFeatures = {
+    --       enabled = true,
+    --       chunks = 'curly',
+    --       languages = { 'python', 'julia', 'r', 'bash', 'html' },
+    --       diagnostics = {
+    --         enabled = true,
+    --         -- triggers = { 'BufWritePost' },
+    --       },
+    --       completion = {
+    --         enabled = true,
+    --       },
+    --     },
+    --     -- codeRunner = {
+    --     --   enabled = true,
+    --     --   default_method = 'molten', -- or 'slime'
+    --     --   ft_runners = { python = 'molten' }, -- filetype to runner, ie. `{ python = "molten" }`.
+    --     --   -- Takes precedence over `default_method`
+    --     --   never_run = { 'yaml' }, -- filetypes which are never sent to a code runner
+    --     -- },
+    --   }
+    -- end,
+    -- keys = {
+    --   { '<leader>qp', ':QuartoPreview<cr>', desc = '[q]quarto [p]preview' },
+    -- },
   },
   { -- send code from python/r/qmd documets to a terminal or REPL
     -- like ipython, R, bash
@@ -168,6 +169,10 @@ return {
     'Exafunction/codeium.vim',
     event = 'BufEnter',
   },
+  -- {
+  -- {
+  --   'github/copilot.vim',
+  -- },
   {
     'ray-x/lsp_signature.nvim',
     event = 'InsertEnter',
@@ -181,4 +186,6 @@ return {
       require('lsp_signature').setup(opts)
     end,
   },
+  -- A plugin to visualise and resolve git conflicts
+  { 'akinsho/git-conflict.nvim', version = '*', config = true },
 }
