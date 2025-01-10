@@ -1,7 +1,3 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
 return {
   {
     'm4xshen/autoclose.nvim', -- Auto pair and close parenthesis
@@ -18,33 +14,6 @@ return {
     config = function()
       require('remember').setup {}
     end,
-  },
-  {
-    'benlubas/molten-nvim',
-    ft = 'python',
-    version = '^1.0.0', -- use version <2.0.0 to avoid breaking changes
-    dependencies = { '3rd/image.nvim' },
-    build = ':UpdateRemotePlugins',
-    init = function()
-      -- these are examples, not defaults. Please see the readme
-      vim.g.molten_image_provider = 'image.nvim'
-      vim.g.molten_output_win_max_height = 30
-      vim.g.python3_host_prog = vim.fn.expand('~/python/venv/neovim/bin/python3')
-    end,
-    keys = {
-      { '<leader>mi', ':MoltenInit<cr>', desc = '[m]olten [i]nit' },
-      { '<leader>mv', ':<C-u>MoltenEvaluateVisual<cr>', mode = 'v', desc = '[m]olten eval [v]isual' },
-      { '<S-CR>', ':<C-u>MoltenEvaluateVisual<cr>', mode = 'v', desc = '[m]olten eval [v]isual' },
-      { '<leader>mr', ':MoltenReevaluateCell<cr>', desc = '[m]olten [r]e-eval cell' },
-      { '<leader>ml', ':MoltenEvaluateLine<cr>', desc = '[m]olten e-eval [l]ine' },
-      { '<leader>mh', ':MoltenHideOutput<cr>', desc = '[m]olten [h]ide ouput' },
-      { '<leader>ms', ':MoltenShowOutput<cr>', desc = '[m]olten [s]ide ouput' },
-      { '<leader>md', ':MoltenDelete<cr>', desc = '[m]olten [d]delete' },
-      { '<leader>mn', ':MoltenNext<cr>', desc = '[m]olten [n]ext cell' },
-      { '<leader>mp', ':MoltenPrev<cr>', desc = '[m]olten [p]revious cell' },
-      { '<C-n>', ':MoltenNext<cr>', desc = '[m]olten [n]ext cell' },
-      { '<C-p>', ':MoltenPrev<cr>', desc = '[m]olten [p]revious cell' },
-    },
   },
   {
     'benlubas/image-save.nvim',
