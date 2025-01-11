@@ -30,47 +30,53 @@ return {
     vim.g.molten_wrap_output = true
     vim.g.molten_tick_rate = 142
 
-    vim.keymap.set('n', '<localleader>mi', ':MoltenInit<CR>', { desc = 'Initialize Molten', silent = true })
-    vim.keymap.set('n', '<localleader>ir', function()
+    vim.keymap.set('n', '<localleader>mii', ':MoltenInit<CR>', { desc = '[m]olten [i]nitialize', silent = false })
+    vim.keymap.set('n', '<localleader>mij', function()
+      vim.cmd 'MoltenInit julia'
+    end, { desc = '[m]olten [i]nitialize [j]ulia', silent = false })
+    vim.keymap.set('n', '<localleader>mir', function()
       vim.cmd 'MoltenInit rust'
-    end, { desc = 'Initialize Molten for Rust', silent = true })
-    vim.keymap.set('n', '<localleader>ip', function()
+    end, { desc = '[m]olten [i]nitialize [r]ust', silent = false })
+    vim.keymap.set('n', '<localleader>mip', function()
       local venv = os.getenv 'VIRTUAL_ENV'
       if venv ~= nil then
-        -- in the form of /home/benlubas/.virtualenvs/VENV_NAME
+        -- in the form of /home/rrgalvan/venv/VENV_NAME
         venv = string.match(venv, '/.+/(.+)')
         vim.cmd(('MoltenInit %s'):format(venv))
       else
         vim.cmd 'MoltenInit python3'
       end
-    end, { desc = 'Initialize Molten for python3', silent = true, noremap = true })
+    end, { desc = '[m]olten [i]nitialize [p]ython', silent = false, noremap = true })
 
     vim.api.nvim_create_autocmd('User', {
       pattern = 'MoltenInitPost',
       callback = function()
         -- quarto code runner mappings
         local r = require 'quarto.runner'
-        vim.keymap.set('n', '<localleader>rc', r.run_cell, { desc = 'run cell', silent = true })
-        vim.keymap.set('n', '<localleader>ra', r.run_above, { desc = 'run cell and above', silent = true })
-        vim.keymap.set('n', '<localleader>rb', r.run_below, { desc = 'run cell and below', silent = true })
-        vim.keymap.set('n', '<localleader>rl', r.run_line, { desc = 'run line', silent = true })
-        vim.keymap.set('n', '<localleader>rA', r.run_all, { desc = 'run all cells', silent = true })
+        vim.keymap.set('n', '<localleader>rc', r.run_cell, { desc = '[r]un [c]ell', silent = false })
+        vim.keymap.set('n', '<localleader>ra', r.run_above, { desc = '[r]un cell & [a]bove', silent = false })
+        vim.keymap.set('n', '<localleader>rb', r.run_below, { desc = '[r]un cell & [b]elow', silent = false })
+        vim.keymap.set('n', '<localleader>rl', r.run_line, { desc = '[r]un [l]ine', silent = false })
+        vim.keymap.set('n', '<localleader>rA', r.run_all, { desc = '[r]un [a]ll cells', silent = false })
         vim.keymap.set('n', '<localleader>RA', function()
           r.run_all(true)
-        end, { desc = 'run all cells of all languages', silent = true })
+        end, { desc = '[r]un all cells of [a]ll languages', silent = false })
 
         -- setup some molten specific keybindings
-        vim.keymap.set('n', '<localleader>e', ':MoltenEvaluateOperator<CR>', { desc = 'evaluate operator', silent = true })
-        vim.keymap.set('n', '<localleader>rr', ':MoltenReevaluateCell<CR>', { desc = 're-eval cell', silent = true })
-        vim.keymap.set('v', '<localleader>r', ':<C-u>MoltenEvaluateVisual<CR>gv', { desc = 'execute visual selection', silent = true })
-        vim.keymap.set('n', '<localleader>os', ':noautocmd MoltenEnterOutput<CR>', { desc = 'open output window', silent = true })
-        vim.keymap.set('n', '<localleader>oh', ':MoltenHideOutput<CR>', { desc = 'close output window', silent = true })
-        vim.keymap.set('n', '<localleader>md', ':MoltenDelete<CR>', { desc = 'delete Molten cell', silent = true })
+        vim.keymap.set('n', '<localleader>re', ':MoltenEvaluateOperator<CR>', { desc = '[r]un [e]valuate operator', silent = false })
+        vim.keymap.set('n', '<localleader>rr', ':MoltenReevaluateCell<CR>', { desc = '[r]un [r]e-eval cell', silent = false })
+        vim.keymap.set('v', '<localleader>r', ':<C-u>MoltenEvaluateVisual<CR>gv', { desc = '[r]un visual selection', silent = false })
+        vim.keymap.set('n', '<localleader>rp', 'vip:<C-u>MoltenEvaluateVisual<CR>gv', { desc = '[r]un current [p]aragraph', silent = false })
+
+        vim.keymap.set('n', '<localleader>ms', ':MoltenShowOutput<CR>', { desc = '[m]olten [s]how cell output', silent = false })
+        vim.keymap.set('n', '<localleader>mh', ':MoltenHideOutput<CR>', { desc = '[m]olten [h]hide cell output', silent = false })
+        vim.keymap.set('n', '<localleader>me', ':noautocmd MoltenEnterOutput<CR>', { desc = '[m]olten [e]nter cell output', silent = false })
+        vim.keymap.set('n', '<localleader>md', ':MoltenDelete<CR>', { desc = '[m]olten [d]delete cell', silent = false })
         local open = false
-        vim.keymap.set('n', '<localleader>ot', function()
+        vim.keymap.set('n', '<localleader>mt', function()
           open = not open
           vim.fn.MoltenUpdateOption('auto_open_output', open)
-        end)
+        end, { desc = '[m]olten [t]oggle auto-show output', silent = false })
 
         -- if we're in a python file, change the configuration a little
         if vim.bo.filetype == 'python' then
